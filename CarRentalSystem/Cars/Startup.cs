@@ -5,6 +5,8 @@ using Cars.ModelsDB;
 using Cars.Repositories;
 using Cars.Controllers;
 using Serilog;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Cars
 {
@@ -20,6 +22,10 @@ namespace Cars
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks()
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDbContextCheck<CarsContext>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -36,11 +42,6 @@ namespace Cars
             
             services.AddScoped<ICarsRepository, CarsRepository>();
             services.AddScoped<CarsWebController>();
-            
-            // services.AddControllersWithViews()
-            //     .AddNewtonsoftJson(options =>
-            //         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //     );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,9 +58,15 @@ namespace Cars
 
             app.UseRouting();
 
-            //app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/manage/health");
+                endpoints.MapHealthChecks("/manage/health/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
+            });
         }
         
         private static void AddDbContext(IServiceCollection services, IConfiguration config)

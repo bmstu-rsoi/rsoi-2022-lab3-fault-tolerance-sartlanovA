@@ -10,4 +10,5 @@ public interface IRentalsService
     Task<CreateRentalResponse> RentCar(string username, CreateRentalRequest request);
     Task FinishRent(string username, Guid rentalUid);
     Task CancelRent(string username, Guid rentalUid);
+    Task<bool> HealthCheckAsync();
 }

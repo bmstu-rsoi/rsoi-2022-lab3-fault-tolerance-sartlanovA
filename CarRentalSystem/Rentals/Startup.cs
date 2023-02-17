@@ -5,6 +5,8 @@ using Rentals.ModelsDB;
 using Rentals.Repositories;
 using Rentals.Controllers;
 using Serilog;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace Rentals
 {
@@ -20,7 +22,11 @@ namespace Rentals
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddHealthChecks()
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDbContextCheck<RentalContext>();
+
+            services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Rentals", Version = "v1"});
@@ -29,11 +35,14 @@ namespace Rentals
                 c.IncludeXmlComments(xmlPath);
                 
             });
-            services.AddSwaggerGenNewtonsoftSupport();
-
+            
+            services.AddControllers();
+            
             AddDbContext(services, Configuration);
-            AddScoped(services);
             AddLogging(services, Configuration);
+            
+            services.AddScoped<IRentalsRepository, RentalsRepository>();
+            services.AddScoped<RentalsWebController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +57,15 @@ namespace Rentals
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/manage/health");
+                endpoints.MapHealthChecks("/manage/health/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
+            });
         }
         
         private static void AddDbContext(IServiceCollection services, IConfiguration config)
@@ -57,12 +74,6 @@ namespace Rentals
                 opt.UseNpgsql(config.GetConnectionString("Postgres")));
         }
 
-        private static void AddScoped(IServiceCollection services)
-        {
-            services.AddScoped<IRentalsRepository, RentalsRepository>();
-            services.AddScoped<RentalsWebController>();
-        }
-        
         private static void AddLogging(IServiceCollection services, IConfiguration config)
         {
             var logger = new LoggerConfiguration()

@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System.Net;
+using System.Reflection;
+using System.Web;
 using APIGateway.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
 using ModelsDTO.Cars;
@@ -99,7 +101,7 @@ public class RentalsService : IRentalsService
 
         return rental;
     }
-    
+
     private async Task<CreateRentalResponse> AddPaymentInfoAsync(Guid paymentUid, CreateRentalResponse rental)
     {
         var payment = await _paymentsRepository.GetAsyncByUid(paymentUid);
@@ -130,10 +132,27 @@ public class RentalsService : IRentalsService
 
     public async Task<RentalResponse> GetAsyncByUid(string username, Guid rentalUid)
     {
-        var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
-        var response = GetRentalResponse(rental);
-        await AddCarInfoAsync(rental.CarUid, response);
-        await AddPaymentInfoAsync(rental.PaymentUid, response);
+        var response = new RentalResponse();
+        
+        if (await _rentalsRepository.HealthCheckAsync())
+        {
+            var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
+            response = GetRentalResponse(rental);
+
+            if (await _carsRepository.HealthCheckAsync())
+            {
+                await AddCarInfoAsync(rental.CarUid, response);
+
+                if (await _paymentsRepository.HealthCheckAsync())
+                {
+                    await AddPaymentInfoAsync(rental.PaymentUid, response);
+                }
+                else
+                {
+                    response.Payment = null;
+                }
+            }
+        }
 
         return response;
     }
@@ -161,18 +180,27 @@ public class RentalsService : IRentalsService
         var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
         var carUid = rental.CarUid;
 
-        var car = await _carsRepository.ReserveCar(carUid, true);
+        await _carsRepository.ReserveCar(carUid, true);
         await _rentalsRepository.ProcessRent(username, rentalUid, "FINISHED");
     }
 
     public async Task CancelRent(string username, Guid rentalUid)
     {
         var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
+        
         var carUid = rental.CarUid;
         var paymentUid = rental.PaymentUid;
-        
-        var car = await _carsRepository.ReserveCar(carUid, true);
+            
+        await _carsRepository.ReserveCar(carUid, true);
         await _rentalsRepository.ProcessRent(username, rentalUid, "CANCELED");
-        var canceledPayment = await _paymentsRepository.CancelAsync(paymentUid);
+        await _paymentsRepository.CancelAsync(paymentUid);
+    }
+
+    public async Task<bool> HealthCheckAsync()
+    {
+        var responseCars = await _carsRepository.HealthCheckAsync();
+        var responseRentals = await _rentalsRepository.HealthCheckAsync();
+        var responsePayments = await _paymentsRepository.HealthCheckAsync();
+        return responseCars && responseRentals && responsePayments;
     }
 }

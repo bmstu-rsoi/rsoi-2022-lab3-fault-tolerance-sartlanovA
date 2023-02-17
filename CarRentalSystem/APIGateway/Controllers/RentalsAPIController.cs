@@ -4,7 +4,6 @@ using System.Net.Mime;
 using APIGateway.Domain;
 using APIGateway.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using ModelsDTO.Rentals;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -84,13 +83,20 @@ namespace APIGateway.Controllers
         public async Task<IActionResult> BookCar([Required, FromHeader(Name = "X-User-Name")] string username,
             [FromBody] CreateRentalRequest request)
         {
+            if (!(await _rentalsService.HealthCheckAsync()))
+            {
+                var response = new ExceptionResponse("Payment Service unavailable");
+                Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+                return new ObjectResult(response);
+            }
+
             try
             {
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
-
+            
                 var response = await _rentalsService.RentCar(username, request);
                 return Ok(response);
             }
@@ -100,7 +106,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying BookCar!");
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
                 throw;
             }
         }
@@ -128,7 +134,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying FinishBookCar!");
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying FinishBookCar!");
                 throw;
             }
         }
@@ -156,7 +162,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying FinishBookCar!");
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying FinishBookCar!");
                 throw;
             }
         }

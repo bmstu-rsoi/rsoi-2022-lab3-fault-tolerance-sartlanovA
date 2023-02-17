@@ -1,4 +1,5 @@
-﻿using AspNetCore.Http.Extensions;
+﻿using System.Net;
+using AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Options;
 using ModelsDTO.Cars;
 
@@ -44,5 +45,19 @@ public class CarsRepository : ICarsRepository
         
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadAsJsonAsync<CarResponse>();
+    }
+
+    public async Task<bool> HealthCheckAsync()
+    {
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"manage/health");
+            var response = await _httpClient.SendAsync(request);
+            return (response.StatusCode == HttpStatusCode.OK);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System.Reflection;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Payments.ModelsDB;
 using Payments.Repositories;
 using Payments.Controllers;
 using Serilog;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using ModelsDTO.Payments.Cancel;
 
 namespace Payments
 {
@@ -20,6 +24,10 @@ namespace Payments
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks()
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDbContextCheck<PaymentContext>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -34,13 +42,10 @@ namespace Payments
             AddDbContext(services, Configuration);
             AddLogging(services, Configuration);
             
+            AddMassTransit(services, Configuration);
+            
             services.AddScoped<IPaymentsRepository, PaymentsRepository>();
             services.AddScoped<PaymentsWebController>();
-
-            // services.AddControllersWithViews()
-            //     .AddNewtonsoftJson(options =>
-            //         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //     );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,9 +62,15 @@ namespace Payments
 
             app.UseRouting();
 
-            // app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/manage/health");
+                endpoints.MapHealthChecks("/manage/health/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
+            });
         }
         
         private static void AddDbContext(IServiceCollection services, IConfiguration config)
@@ -76,6 +87,29 @@ namespace Payments
             
             services.AddLogging(loggingBuilder =>
                 loggingBuilder.AddSerilog(logger: log, dispose: true));
+        }
+        
+        private static void AddMassTransit(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddOptions<RabbitMqTransportOptions>()
+                .BindConfiguration(nameof(RabbitMqTransportOptions));
+
+            services.AddMassTransit(cfg =>
+            {
+                cfg.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(configuration.GetValue<string>("EndpointPrefix"), false));
+                cfg.AddConsumer<PaymentConsumer>();
+         
+                cfg.ConfigureHealthCheckOptions(x =>
+                {
+                    x.FailureStatus = HealthStatus.Degraded;
+                });
+            
+                cfg.UsingRabbitMq((context, config) =>
+                {
+                    config.UseBsonSerializer();
+                    config.ConfigureEndpoints(context);
+                });
+            });
         }
     }
 }

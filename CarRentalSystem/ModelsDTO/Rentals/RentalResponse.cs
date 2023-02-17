@@ -10,5 +10,5 @@ public class RentalResponse
     public string DateFrom { get; set; }
     public string DateTo { get; set; }
     public CarInfo Car { get; set; }
-    public PaymentInfo Payment { get; set; }
+    public PaymentInfo? Payment { get; set; }
 }
