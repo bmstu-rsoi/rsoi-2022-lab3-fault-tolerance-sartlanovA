@@ -1,0 +1,661 @@
+2022-12-22 22:03:54.714 +03:00 [INF] Now listening on: http://[::]:8050
+2022-12-22 22:03:54.726 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-22 22:03:54.727 +03:00 [INF] Hosting environment: Development
+2022-12-22 22:03:54.727 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab2-microservices-platosha-git\CarRentalSystem\Payments
+2022-12-22 22:03:55.106 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/index.html - -
+2022-12-22 22:03:55.293 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/index.html - - - 200 - text/html;charset=utf-8 192.9520ms
+2022-12-22 22:03:55.460 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - -
+2022-12-22 22:03:55.632 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 172.6989ms
+2022-12-22 22:05:51.679 +03:00 [INF] Application is shutting down...
+2022-12-22 22:11:29.968 +03:00 [INF] Now listening on: http://[::]:8050
+2022-12-22 22:11:29.989 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-22 22:11:29.993 +03:00 [INF] Hosting environment: Development
+2022-12-22 22:11:29.993 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab2-microservices-platosha-git\CarRentalSystem\Payments
+2022-12-22 22:11:30.437 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/index.html - -
+2022-12-22 22:11:30.649 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/index.html - - - 200 - text/html;charset=utf-8 217.4352ms
+2022-12-22 22:11:30.847 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - -
+2022-12-22 22:11:31.054 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 206.6309ms
+2022-12-22 22:11:57.033 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 22:11:57.069 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 22:11:57.118 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:11:58.919 +03:00 [INF] Executed DbCommand (72ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 22:11:59.142 +03:00 [INF] Executed DbCommand (31ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 22:11:59.169 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:11:59.186 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 2061.4577ms
+2022-12-22 22:11:59.187 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 22:11:59.193 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 2160.0228ms
+2022-12-22 22:12:01.399 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - -
+2022-12-22 22:12:01.400 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:01.406 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:01.530 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:01.543 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:01.544 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 137.0618ms
+2022-12-22 22:12:01.544 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:01.544 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - - - 200 - application/json;+charset=utf-8 145.0471ms
+2022-12-22 22:12:05.564 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - -
+2022-12-22 22:12:05.564 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:05.564 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:05.640 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:05.641 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:05.642 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 77.1272ms
+2022-12-22 22:12:05.642 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:05.642 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - - - 200 - application/json;+charset=utf-8 78.5772ms
+2022-12-22 22:12:09.481 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/eba72bf1-b198-4e58-8bb8-555a54c11c22 - -
+2022-12-22 22:12:09.481 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.482 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.484 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.485 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.486 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.0402ms
+2022-12-22 22:12:09.486 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.486 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/eba72bf1-b198-4e58-8bb8-555a54c11c22 - - - 200 - application/json;+charset=utf-8 5.3013ms
+2022-12-22 22:12:09.497 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/a0da2e1f-32aa-4096-a066-cac438818ab3 - -
+2022-12-22 22:12:09.498 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.498 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.501 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.502 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.502 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.9135ms
+2022-12-22 22:12:09.503 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.503 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/a0da2e1f-32aa-4096-a066-cac438818ab3 - - - 200 - application/json;+charset=utf-8 5.7231ms
+2022-12-22 22:12:09.514 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/af9ddddf-f278-4e58-a098-3112a4345a2a - -
+2022-12-22 22:12:09.514 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.514 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.517 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.518 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.518 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.7195ms
+2022-12-22 22:12:09.518 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.518 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/af9ddddf-f278-4e58-a098-3112a4345a2a - - - 200 - application/json;+charset=utf-8 4.6840ms
+2022-12-22 22:12:09.531 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/5a667e88-cb4a-4a8a-87b3-eb047489f83e - -
+2022-12-22 22:12:09.532 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.532 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.535 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.536 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.537 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.3562ms
+2022-12-22 22:12:09.537 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.538 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/5a667e88-cb4a-4a8a-87b3-eb047489f83e - - - 200 - application/json;+charset=utf-8 6.2323ms
+2022-12-22 22:12:09.549 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/3d5f7f2a-1993-40b0-a264-7770654a0279 - -
+2022-12-22 22:12:09.549 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.550 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.553 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.554 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.555 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.8093ms
+2022-12-22 22:12:09.555 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.555 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/3d5f7f2a-1993-40b0-a264-7770654a0279 - - - 200 - application/json;+charset=utf-8 6.4114ms
+2022-12-22 22:12:09.567 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/568061d3-f4bb-416a-8483-2aa259f0515d - -
+2022-12-22 22:12:09.567 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.568 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.571 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.572 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.573 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 5.0218ms
+2022-12-22 22:12:09.573 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.573 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/568061d3-f4bb-416a-8483-2aa259f0515d - - - 200 - application/json;+charset=utf-8 5.8982ms
+2022-12-22 22:12:09.585 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/fc763627-5cc4-4865-884d-11c1313dea8c - -
+2022-12-22 22:12:09.585 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.586 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.590 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.590 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.590 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.1193ms
+2022-12-22 22:12:09.591 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.591 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/fc763627-5cc4-4865-884d-11c1313dea8c - - - 200 - application/json;+charset=utf-8 6.5429ms
+2022-12-22 22:12:09.601 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/0a0360ca-8083-4d65-aed0-92ea3de0181f - -
+2022-12-22 22:12:09.602 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.602 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.605 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.606 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.606 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.2695ms
+2022-12-22 22:12:09.607 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.607 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/0a0360ca-8083-4d65-aed0-92ea3de0181f - - - 200 - application/json;+charset=utf-8 5.3947ms
+2022-12-22 22:12:09.618 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/ec8cf29f-29f6-4fad-9ac6-e53493097d8f - -
+2022-12-22 22:12:09.619 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.619 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.624 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.625 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.625 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 5.5548ms
+2022-12-22 22:12:09.626 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.626 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/ec8cf29f-29f6-4fad-9ac6-e53493097d8f - - - 200 - application/json;+charset=utf-8 7.6611ms
+2022-12-22 22:12:09.641 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/3e51bcce-2f22-4137-b080-57af5e02d527 - -
+2022-12-22 22:12:09.641 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.641 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.644 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.645 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.645 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.6231ms
+2022-12-22 22:12:09.645 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.645 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/3e51bcce-2f22-4137-b080-57af5e02d527 - - - 200 - application/json;+charset=utf-8 4.4448ms
+2022-12-22 22:12:09.659 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/1b2b245d-07f1-426b-8bef-cc028932665c - -
+2022-12-22 22:12:09.659 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.659 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.662 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.663 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.663 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.6516ms
+2022-12-22 22:12:09.663 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.664 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/1b2b245d-07f1-426b-8bef-cc028932665c - - - 200 - application/json;+charset=utf-8 4.5632ms
+2022-12-22 22:12:09.676 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/a1f83cca-4047-4575-a73b-499f399176df - -
+2022-12-22 22:12:09.677 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.677 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.680 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.680 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.681 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.69ms
+2022-12-22 22:12:09.681 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.681 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/a1f83cca-4047-4575-a73b-499f399176df - - - 200 - application/json;+charset=utf-8 4.5947ms
+2022-12-22 22:12:09.694 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/8438112e-686e-44b7-8c79-367186c6a7f4 - -
+2022-12-22 22:12:09.694 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.695 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.698 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.699 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.699 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.596ms
+2022-12-22 22:12:09.699 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.700 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/8438112e-686e-44b7-8c79-367186c6a7f4 - - - 200 - application/json;+charset=utf-8 5.7173ms
+2022-12-22 22:12:09.715 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - -
+2022-12-22 22:12:09.716 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.716 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:09.719 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:09.720 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:09.721 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.4198ms
+2022-12-22 22:12:09.721 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:09.721 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - - - 200 - application/json;+charset=utf-8 5.5691ms
+2022-12-22 22:12:16.867 +03:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - 0
+2022-12-22 22:12:16.868 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CancelRental (Payments)'
+2022-12-22 22:12:16.873 +03:00 [INF] Route matched with {action = "CancelRental", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelRental(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:16.877 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:16.887 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE payment SET payment_uid = @p0, price = @p1, status = @p2
+WHERE id = @p3;
+2022-12-22 22:12:16.888 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:16.888 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CancelRental (Payments) in 15.0508ms
+2022-12-22 22:12:16.888 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CancelRental (Payments)'
+2022-12-22 22:12:16.889 +03:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - 0 - 200 - application/json;+charset=utf-8 21.2812ms
+2022-12-22 22:12:20.216 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - -
+2022-12-22 22:12:20.216 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:20.217 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:20.221 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:20.221 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:20.222 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.7669ms
+2022-12-22 22:12:20.222 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:20.222 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - - - 200 - application/json;+charset=utf-8 6.2901ms
+2022-12-22 22:12:23.361 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 22:12:23.361 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 22:12:23.362 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:23.365 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 22:12:23.369 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 22:12:23.370 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:23.371 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 8.6597ms
+2022-12-22 22:12:23.371 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 22:12:23.371 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 9.8581ms
+2022-12-22 22:12:23.393 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/fb815ae5-3eef-4e56-a568-779721b31fd7 - -
+2022-12-22 22:12:23.393 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:23.393 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:23.396 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:23.397 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:23.397 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.2728ms
+2022-12-22 22:12:23.397 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:23.397 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/fb815ae5-3eef-4e56-a568-779721b31fd7 - - - 200 - application/json;+charset=utf-8 4.1854ms
+2022-12-22 22:12:29.254 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/fb815ae5-3eef-4e56-a568-779721b31fd7 - -
+2022-12-22 22:12:29.255 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:29.255 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 22:12:29.258 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 22:12:29.258 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 22:12:29.258 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.4795ms
+2022-12-22 22:12:29.258 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 22:12:29.259 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/fb815ae5-3eef-4e56-a568-779721b31fd7 - - - 200 - application/json;+charset=utf-8 4.1636ms
+2022-12-22 22:12:34.242 +03:00 [INF] Application is shutting down...
+2022-12-22 23:04:48.217 +03:00 [INF] Now listening on: http://[::]:8050
+2022-12-22 23:04:48.239 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-22 23:04:48.240 +03:00 [INF] Hosting environment: Development
+2022-12-22 23:04:48.241 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab2-microservices-platosha-git\CarRentalSystem\Payments
+2022-12-22 23:04:48.549 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/index.html - -
+2022-12-22 23:04:48.789 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/index.html - - - 200 - text/html;charset=utf-8 248.2341ms
+2022-12-22 23:04:49.010 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - -
+2022-12-22 23:04:49.221 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 210.7320ms
+2022-12-22 23:05:23.353 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 23:05:23.382 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:05:23.422 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:05:25.267 +03:00 [INF] Executed DbCommand (78ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 23:05:25.511 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 23:05:25.538 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:05:25.557 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 2127.341ms
+2022-12-22 23:05:25.558 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:05:25.566 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 2212.7889ms
+2022-12-22 23:07:09.828 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 23:07:09.830 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:07:09.831 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:07:09.846 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 23:07:09.851 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 23:07:09.852 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:07:09.854 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 22.3454ms
+2022-12-22 23:07:09.855 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:07:09.856 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 27.7377ms
+2022-12-22 23:11:59.330 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 23:11:59.331 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:11:59.332 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:11:59.530 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 23:11:59.542 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 23:11:59.543 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:11:59.543 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 211.1079ms
+2022-12-22 23:11:59.544 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:11:59.544 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 214.3733ms
+2022-12-22 23:12:01.871 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - -
+2022-12-22 23:12:01.872 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:01.878 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:01.995 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:02.009 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:02.009 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 130.5179ms
+2022-12-22 23:12:02.009 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:02.009 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - - - 200 - application/json;+charset=utf-8 137.8682ms
+2022-12-22 23:12:05.487 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - -
+2022-12-22 23:12:05.488 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:05.488 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:05.495 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:05.495 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:05.496 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 7.5212ms
+2022-12-22 23:12:05.496 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:05.496 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - - - 200 - application/json;+charset=utf-8 8.7603ms
+2022-12-22 23:12:16.696 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/eba72bf1-b198-4e58-8bb8-555a54c11c22 - -
+2022-12-22 23:12:16.697 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.697 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.701 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.702 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.703 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 5.2259ms
+2022-12-22 23:12:16.703 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.703 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/eba72bf1-b198-4e58-8bb8-555a54c11c22 - - - 200 - application/json;+charset=utf-8 6.9407ms
+2022-12-22 23:12:16.715 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/a0da2e1f-32aa-4096-a066-cac438818ab3 - -
+2022-12-22 23:12:16.716 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.716 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.720 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.721 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.721 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 5.0409ms
+2022-12-22 23:12:16.721 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.721 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/a0da2e1f-32aa-4096-a066-cac438818ab3 - - - 200 - application/json;+charset=utf-8 6.3827ms
+2022-12-22 23:12:16.733 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/af9ddddf-f278-4e58-a098-3112a4345a2a - -
+2022-12-22 23:12:16.733 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.734 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.737 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.738 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.738 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.2364ms
+2022-12-22 23:12:16.738 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.738 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/af9ddddf-f278-4e58-a098-3112a4345a2a - - - 200 - application/json;+charset=utf-8 5.6119ms
+2022-12-22 23:12:16.749 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/5a667e88-cb4a-4a8a-87b3-eb047489f83e - -
+2022-12-22 23:12:16.750 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.751 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.754 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.755 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.755 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.6313ms
+2022-12-22 23:12:16.756 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.756 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/5a667e88-cb4a-4a8a-87b3-eb047489f83e - - - 200 - application/json;+charset=utf-8 6.4064ms
+2022-12-22 23:12:16.766 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/3d5f7f2a-1993-40b0-a264-7770654a0279 - -
+2022-12-22 23:12:16.767 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.767 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.771 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.772 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.772 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.5064ms
+2022-12-22 23:12:16.772 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.773 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/3d5f7f2a-1993-40b0-a264-7770654a0279 - - - 200 - application/json;+charset=utf-8 6.5698ms
+2022-12-22 23:12:16.786 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/568061d3-f4bb-416a-8483-2aa259f0515d - -
+2022-12-22 23:12:16.786 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.786 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.790 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.791 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.791 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.902ms
+2022-12-22 23:12:16.791 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.792 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/568061d3-f4bb-416a-8483-2aa259f0515d - - - 200 - application/json;+charset=utf-8 6.1027ms
+2022-12-22 23:12:16.804 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/fc763627-5cc4-4865-884d-11c1313dea8c - -
+2022-12-22 23:12:16.804 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.804 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.807 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.807 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.807 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.1937ms
+2022-12-22 23:12:16.808 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.808 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/fc763627-5cc4-4865-884d-11c1313dea8c - - - 200 - application/json;+charset=utf-8 4.0638ms
+2022-12-22 23:12:16.819 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/0a0360ca-8083-4d65-aed0-92ea3de0181f - -
+2022-12-22 23:12:16.820 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.820 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.824 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.824 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.825 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.0205ms
+2022-12-22 23:12:16.825 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.825 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/0a0360ca-8083-4d65-aed0-92ea3de0181f - - - 200 - application/json;+charset=utf-8 5.7356ms
+2022-12-22 23:12:16.836 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/ec8cf29f-29f6-4fad-9ac6-e53493097d8f - -
+2022-12-22 23:12:16.836 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.836 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.839 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.839 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.840 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.279ms
+2022-12-22 23:12:16.840 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.840 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/ec8cf29f-29f6-4fad-9ac6-e53493097d8f - - - 200 - application/json;+charset=utf-8 4.3968ms
+2022-12-22 23:12:16.851 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/3e51bcce-2f22-4137-b080-57af5e02d527 - -
+2022-12-22 23:12:16.852 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.852 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.854 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.855 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.855 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.4508ms
+2022-12-22 23:12:16.855 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.856 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/3e51bcce-2f22-4137-b080-57af5e02d527 - - - 200 - application/json;+charset=utf-8 4.6326ms
+2022-12-22 23:12:16.866 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/1b2b245d-07f1-426b-8bef-cc028932665c - -
+2022-12-22 23:12:16.866 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.866 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.869 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.870 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.870 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.822ms
+2022-12-22 23:12:16.870 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.871 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/1b2b245d-07f1-426b-8bef-cc028932665c - - - 200 - application/json;+charset=utf-8 4.6964ms
+2022-12-22 23:12:16.882 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/a1f83cca-4047-4575-a73b-499f399176df - -
+2022-12-22 23:12:16.882 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.882 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.886 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.887 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.887 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.4947ms
+2022-12-22 23:12:16.887 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.887 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/a1f83cca-4047-4575-a73b-499f399176df - - - 200 - application/json;+charset=utf-8 5.5313ms
+2022-12-22 23:12:16.899 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/8438112e-686e-44b7-8c79-367186c6a7f4 - -
+2022-12-22 23:12:16.899 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.900 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.904 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.905 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.905 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.5927ms
+2022-12-22 23:12:16.905 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.905 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/8438112e-686e-44b7-8c79-367186c6a7f4 - - - 200 - application/json;+charset=utf-8 6.3365ms
+2022-12-22 23:12:16.918 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - -
+2022-12-22 23:12:16.918 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.918 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.921 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.922 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.922 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.979ms
+2022-12-22 23:12:16.923 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.923 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/25732538-7c42-45b1-b996-4d847080b36c - - - 200 - application/json;+charset=utf-8 4.9474ms
+2022-12-22 23:12:16.936 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/fb815ae5-3eef-4e56-a568-779721b31fd7 - -
+2022-12-22 23:12:16.936 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.936 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.939 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.939 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.940 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.5174ms
+2022-12-22 23:12:16.940 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.940 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/fb815ae5-3eef-4e56-a568-779721b31fd7 - - - 200 - application/json;+charset=utf-8 4.3669ms
+2022-12-22 23:12:16.951 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - -
+2022-12-22 23:12:16.951 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.951 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:16.954 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:16.955 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:16.955 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 3.5211ms
+2022-12-22 23:12:16.955 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:16.955 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - - - 200 - application/json;+charset=utf-8 4.4841ms
+2022-12-22 23:12:24.155 +03:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - 0
+2022-12-22 23:12:24.155 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CancelRental (Payments)'
+2022-12-22 23:12:24.160 +03:00 [INF] Route matched with {action = "CancelRental", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelRental(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:24.164 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:24.173 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE payment SET payment_uid = @p0, price = @p1, status = @p2
+WHERE id = @p3;
+2022-12-22 23:12:24.174 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:24.174 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CancelRental (Payments) in 13.8737ms
+2022-12-22 23:12:24.174 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CancelRental (Payments)'
+2022-12-22 23:12:24.175 +03:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - 0 - 200 - application/json;+charset=utf-8 19.5686ms
+2022-12-22 23:12:28.212 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - -
+2022-12-22 23:12:28.212 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:28.212 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:28.216 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:28.217 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:28.218 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.9405ms
+2022-12-22 23:12:28.218 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:28.218 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/dced411c-b0b7-448f-bde0-baccb930959a - - - 200 - application/json;+charset=utf-8 6.3217ms
+2022-12-22 23:12:35.700 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 23:12:35.700 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:12:35.700 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:35.704 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 23:12:35.707 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 23:12:35.708 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:35.708 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 7.5124ms
+2022-12-22 23:12:35.708 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:12:35.708 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 8.5606ms
+2022-12-22 23:12:35.729 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/f02ed54d-f345-4747-a672-15f3367f41e2 - -
+2022-12-22 23:12:35.730 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:35.730 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:35.733 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:35.734 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:35.735 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 4.5586ms
+2022-12-22 23:12:35.735 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:35.735 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/f02ed54d-f345-4747-a672-15f3367f41e2 - - - 200 - application/json;+charset=utf-8 6.1439ms
+2022-12-22 23:12:42.528 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/f02ed54d-f345-4747-a672-15f3367f41e2 - -
+2022-12-22 23:12:42.529 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:42.529 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:12:42.536 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:12:42.537 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:12:42.537 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 7.7352ms
+2022-12-22 23:12:42.537 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:12:42.538 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/f02ed54d-f345-4747-a672-15f3367f41e2 - - - 200 - application/json;+charset=utf-8 9.1304ms
+2022-12-22 23:14:02.242 +03:00 [INF] Application is shutting down...
+2022-12-22 23:38:18.055 +03:00 [INF] Now listening on: http://[::]:8050
+2022-12-22 23:38:18.067 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-22 23:38:18.068 +03:00 [INF] Hosting environment: Development
+2022-12-22 23:38:18.068 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab2-microservices-platosha-git\CarRentalSystem\Payments
+2022-12-22 23:38:18.450 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/index.html - -
+2022-12-22 23:38:18.648 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/index.html - - - 200 - text/html;charset=utf-8 205.1526ms
+2022-12-22 23:38:18.826 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - -
+2022-12-22 23:38:19.014 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 188.0654ms
+2022-12-22 23:38:45.669 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 -
+2022-12-22 23:38:45.700 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:38:45.738 +03:00 [INF] Route matched with {action = "CreatePayment", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePayment(ModelsDTO.Payments.PaymentInfo) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:38:47.498 +03:00 [INF] Executed DbCommand (71ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM payment AS p
+2022-12-22 23:38:47.759 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO payment (id, payment_uid, price, status)
+VALUES (@p0, @p1, @p2, @p3);
+2022-12-22 23:38:47.786 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:38:47.804 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.CreatePayment (Payments) in 2058.5014ms
+2022-12-22 23:38:47.805 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.CreatePayment (Payments)'
+2022-12-22 23:38:47.809 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8050/api/v1/payment/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 2140.4114ms
+2022-12-22 23:38:49.911 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/75dfa8d7-8f94-4a18-8a15-d55048268984 - -
+2022-12-22 23:38:49.912 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:38:49.917 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:38:50.010 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:38:50.021 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:38:50.021 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 104.3511ms
+2022-12-22 23:38:50.022 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:38:50.022 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/75dfa8d7-8f94-4a18-8a15-d55048268984 - - - 200 - application/json;+charset=utf-8 111.2797ms
+2022-12-22 23:38:53.369 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8050/api/v1/payment/75dfa8d7-8f94-4a18-8a15-d55048268984 - -
+2022-12-22 23:38:53.370 +03:00 [INF] Executing endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:38:53.370 +03:00 [INF] Route matched with {action = "GetPaymentByUid", controller = "PaymentsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaymentByUid(System.Guid) on controller Payments.Controllers.PaymentsAPIController (Payments).
+2022-12-22 23:38:53.468 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__paymentUid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.payment_uid, p.price, p.status
+FROM payment AS p
+WHERE p.payment_uid = @__paymentUid_0
+LIMIT 1
+2022-12-22 23:38:53.469 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Payments.PaymentInfo'.
+2022-12-22 23:38:53.469 +03:00 [INF] Executed action Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments) in 99.459ms
+2022-12-22 23:38:53.470 +03:00 [INF] Executed endpoint 'Payments.Controllers.PaymentsAPIController.GetPaymentByUid (Payments)'
+2022-12-22 23:38:53.470 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8050/api/v1/payment/75dfa8d7-8f94-4a18-8a15-d55048268984 - - - 200 - application/json;+charset=utf-8 100.5364ms
+2022-12-22 23:39:35.666 +03:00 [INF] Application is shutting down...

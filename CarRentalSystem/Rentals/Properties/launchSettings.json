@@ -1,0 +1,15 @@
+﻿{
+  "profiles": {
+    "Rentals": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:8060",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PORT": "8060"
+      }
+    }
+  }
+}
