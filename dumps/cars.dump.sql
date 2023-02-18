@@ -116,3 +116,4 @@ ALTER TABLE ONLY public.cars
 --
 -- PostgreSQL database dump complete
 --
+
