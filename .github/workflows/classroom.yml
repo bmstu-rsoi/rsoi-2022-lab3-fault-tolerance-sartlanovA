@@ -33,7 +33,7 @@ jobs:
           ./scripts/start.sh
           ./scripts/wait-script.sh
         env:
-          WAIT_PORTS: 8080,8070,8060,8050,5672
+          WAIT_PORTS: 8080,8070,8060,8050
 
       # TODO setup variant, service and port
       - name: Fill database
